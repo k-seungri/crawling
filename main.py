@@ -30,7 +30,7 @@ driver = webdriver.Chrome( executable_path=path, chrome_options=chrome_options )
 # 크롤링 내용 파일로 저장
 wb = Workbook()
 ws = wb.active
-ws.append(['Name','Address','Number'])
+ws.append(['Name','Category','Address','Number'])
 now = time.localtime()
 s = '%04d%02d%02d_%02d%02d' % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min)
 f_name = 'naver_map_crawling_' + s + '.xlsx'
@@ -42,7 +42,7 @@ time.sleep(2)
 #음식점 클릭
 if driver.find_element_by_class_name('bubble_filter_list').find_element_by_tag_name('li').text == '음식점':
     driver.find_element_by_class_name('bubble_filter_list').find_element_by_tag_name('li').click()
-    time.sleep(2)
+    time.sleep(3)
 else:
     print("첫번째 리스트 '음식점'이 아님")
 
@@ -51,14 +51,13 @@ else:
 
 n = 0
 while n <= 6:
-    # searchIframe 전체적으로 내려서 숨겨진 tag 열기
+    # searchIframe 스크롤바 내려서 숨겨진 tag 열기
     driver.switch_to.default_content()
     driver.switch_to.frame('searchIframe')
     time.sleep(1)
     driver.find_element_by_tag_name('body').click()
     time.sleep(1)
 
-    # 스크롤 내리기
     for i in range(30):
         driver.find_element_by_tag_name('body').send_keys(Keys.PAGE_DOWN)
         time.sleep(0.5)
