@@ -30,7 +30,7 @@ driver = webdriver.Chrome( executable_path=path, chrome_options=chrome_options )
 # 크롤링 내용 파일로 저장
 wb = Workbook()
 ws = wb.active
-ws.append(['Name','Address','Number'])
+ws.append(['Store Name','Category','Address','Number'])
 now = time.localtime()
 s = '%04d%02d%02d_%02d%02d' % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min)
 f_name = 'naver_map_crawling_' + s + '.xlsx'
